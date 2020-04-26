@@ -7,9 +7,23 @@
         mc:Ignorable="d"
         Title="NPSim" Height="450" Width="800">
     <Grid>
-        <ToolBar Height="25" VerticalAlignment="Top">
-            <ToggleButton>Button</ToggleButton>
-        </ToolBar>
-        <Button Width="100" Height="30" Content="New Window" Click="Button_Click" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Height="25" VerticalAlignment="Top" Grid.Row="0">
+            <MenuItem Header="Devices">
+                <MenuItem Header="Computer" Click="ComputerMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Connections">
+                <MenuItem Header="PhysicalMedia" Click="PhysicalMediaMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Traffic">
+                <MenuItem Header="Send data" Click="SendDataMenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1">
+            <Canvas Name="SimulationCanvas"></Canvas>
+        </Grid>
     </Grid>
 </Window>

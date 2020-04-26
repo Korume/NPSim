@@ -61,11 +61,21 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -74,6 +84,12 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Unity.Abstractions, Version=5.11.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.6\lib\net47\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.11.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.11.6\lib\net47\Unity.Container.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -84,6 +100,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Composition\UnityConfig.cs" />
+    <Compile Include="Domain\Builders\IMediaBuilder.cs" />
+    <Compile Include="Domain\Builders\INetworkInterfaceControllerBuilder.cs" />
+    <Compile Include="Domain\Builders\IOpenSystemBuilder.cs" />
+    <Compile Include="Domain\Builders\MediaBuilder.cs" />
+    <Compile Include="Domain\Builders\NetworkInterfaceControllerBuilder.cs" />
+    <Compile Include="Domain\Builders\OpenSystemBuilder.cs" />
+    <Compile Include="Domain\PhysicalAddressHelper.cs" />
+    <Compile Include="Domain\PhysicalLayer\IMediaManager.cs" />
+    <Compile Include="Domain\PhysicalLayer\MediaManager.cs" />
+    <Compile Include="Entities\BaseOpenSystem.cs" />
+    <Compile Include="Entities\PhysicalLayer\Nic\BaseNetworkInterfaceController.cs" />
+    <Compile Include="Entities\PhysicalLayer\Nic\EventHandlers\DataReceivedEventArgs.cs" />
+    <Compile Include="Entities\PhysicalLayer\Nic\IConnectionEndpoint.cs" />
+    <Compile Include="Entities\PhysicalLayer\Media\Cabel.cs" />
+    <Compile Include="Entities\PhysicalLayer\Media\Connector.cs" />
+    <Compile Include="Entities\PhysicalLayer\Media\IMedia.cs" />
+    <Compile Include="Entities\PhysicalLayer\Media\PhysicalMedia.cs" />
+    <Compile Include="Entities\IOpenSystem.cs" />
+    <Compile Include="Entities\PhysicalLayer\Nic\INetworkInterface.cs" />
+    <Compile Include="Entities\PhysicalLayer\Nic\INetworkInterfaceController.cs" />
+    <Compile Include="Entities\PhysicalLayer\Nic\NetworkInterface.cs" />
     <Compile Include="Views\ComputerWindow.xaml.cs">
       <DependentUpon>ComputerWindow.xaml</DependentUpon>
     </Compile>
@@ -95,7 +133,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Entities\Cabel.cs" />
     <Compile Include="Entities\Computer.cs" />
     <Compile Include="Entities\Router.cs" />
     <Compile Include="Entities\Switch.cs" />
@@ -126,7 +163,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="NPSim_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -148,8 +185,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Domain\OsiComponents\" />
+    <Folder Include="Interfaces\" />
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Images\computer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

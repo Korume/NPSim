@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NPSim.Entities
+﻿namespace NPSim.Entities
 {
-    class Computer
+    public class Computer : BaseOpenSystem
     {
+        public Computer(string name, uint nicCount)
+            : base(name, nicCount)
+        {
+        }
     }
 }
