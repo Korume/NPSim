@@ -1,6 +1,7 @@
 ﻿using System;
 using NPSim.Domain.Builders;
 using NPSim.Domain.PhysicalLayer;
+using NPSim.ViewModels;
 using Unity;
 
 namespace NPSim.Composition
@@ -26,6 +27,12 @@ namespace NPSim.Composition
             container.RegisterType<IMediaManager, MediaManager>();
             container.RegisterType<IMediaBuilder, MediaBuilder>();
             container.RegisterType<INetworkInterfaceControllerBuilder, NetworkInterfaceControllerBuilder>();
+
+            #region ViewModels
+
+            container.RegisterSingleton<MainWindowVm>();
+
+            #endregion
 
             return container;
         }

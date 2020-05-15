@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace NPSim.Views
 {
     /// <summary>
-    /// Interaction logic for ComputerWindow.xaml
+    /// Interaction logic for PhysicalMediaUserControl.xaml
     /// </summary>
-    public partial class ComputerWindow : Window
+    public partial class PhysicalMediaUserControl : UserControl
     {
-        public ComputerWindow()
+        public PhysicalMediaUserControl()
         {
             InitializeComponent();
         }

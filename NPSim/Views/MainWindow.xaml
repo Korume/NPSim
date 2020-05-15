@@ -5,21 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NPSim"
         mc:Ignorable="d"
-        Title="NPSim" Height="450" Width="800">
+        Title="NPSim" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Menu Height="25" VerticalAlignment="Top" Grid.Row="0">
+        <Menu VerticalAlignment="Top" Grid.Row="0" Panel.ZIndex="999">
             <MenuItem Header="Devices">
-                <MenuItem Header="Computer" Click="ComputerMenuItem_Click"/>
+                <MenuItem Header="Computer"
+                          Command="{Binding AddOpenSystemCommand}"
+                          CommandParameter="{Binding ElementName=SimulationCanvas}"/>
             </MenuItem>
             <MenuItem Header="Connections">
-                <MenuItem Header="PhysicalMedia" Click="PhysicalMediaMenuItem_Click"/>
+                <MenuItem Header="PhysicalMedia"
+                          Command="{Binding AddPhysicalMediaCommand}"
+                          CommandParameter="{Binding ElementName=SimulationCanvas}"/>
             </MenuItem>
             <MenuItem Header="Traffic">
-                <MenuItem Header="Send data" Click="SendDataMenuItem_Click"/>
+                <MenuItem Header="Send data"
+                          Command="{Binding OpenTrafficCreatorCommand}"/>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1">

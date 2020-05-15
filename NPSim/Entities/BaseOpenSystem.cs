@@ -40,5 +40,15 @@ namespace NPSim.Entities
 
             nic.Send(sourceAddress, data);
         }
+
+        public IEnumerable<INetworkInterface> GetAvailableNetworkInterfaces()
+        {
+            if (NicCollection.Any())
+            {
+                return NicCollection.SelectMany(c => c.NetworkInterfaces.Where(n => n.AttachedMedia == null));
+            }
+
+            return Enumerable.Empty<INetworkInterface>();
+        }
     }
 }

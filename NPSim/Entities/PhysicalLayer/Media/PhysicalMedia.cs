@@ -7,6 +7,8 @@ namespace NPSim.Entities.PhysicalLayer.Media
     {
         private const uint _connectorCount = 2;
 
+        public bool HasAvailableConnector { get => _connectors.Any(c => !c.IsAttached); }
+
         private readonly Cabel _cabel;
         private readonly Connector[] _connectors;
 

@@ -71,10 +71,27 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1422\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.7.2.0.1422\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -110,6 +127,7 @@
     <Compile Include="Domain\PhysicalAddressHelper.cs" />
     <Compile Include="Domain\PhysicalLayer\IMediaManager.cs" />
     <Compile Include="Domain\PhysicalLayer\MediaManager.cs" />
+    <Compile Include="Domain\PhysicalLayer\OpenSystemManager.cs" />
     <Compile Include="Entities\BaseOpenSystem.cs" />
     <Compile Include="Entities\PhysicalLayer\Nic\BaseNetworkInterfaceController.cs" />
     <Compile Include="Entities\PhysicalLayer\Nic\EventHandlers\DataReceivedEventArgs.cs" />
@@ -122,8 +140,21 @@
     <Compile Include="Entities\PhysicalLayer\Nic\INetworkInterface.cs" />
     <Compile Include="Entities\PhysicalLayer\Nic\INetworkInterfaceController.cs" />
     <Compile Include="Entities\PhysicalLayer\Nic\NetworkInterface.cs" />
-    <Compile Include="Views\ComputerWindow.xaml.cs">
-      <DependentUpon>ComputerWindow.xaml</DependentUpon>
+    <Compile Include="Models\LogicalCursorState.cs" />
+    <Compile Include="Models\OpenSystemModel.cs" />
+    <Compile Include="Models\PhysicalMediaModel.cs" />
+    <Compile Include="ViewModels\MainWindowVm.cs" />
+    <Compile Include="ViewModels\OpenSystemVm.cs" />
+    <Compile Include="ViewModels\PhysicalMediaVm.cs" />
+    <Compile Include="ViewModels\TrafficWindowVm.cs" />
+    <Compile Include="Views\OpenSystemUserControl.xaml.cs">
+      <DependentUpon>OpenSystemUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhysicalMediaUserControl.xaml.cs">
+      <DependentUpon>PhysicalMediaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrafficWindow.xaml.cs">
+      <DependentUpon>TrafficWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -140,7 +171,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\ComputerWindow.xaml">
+    <Page Include="Views\OpenSystemUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PhysicalMediaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrafficWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -187,8 +226,6 @@
   <ItemGroup>
     <Folder Include="Domain\OsiComponents\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Images\computer.png">

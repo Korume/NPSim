@@ -1,4 +1,5 @@
-﻿using System.Net.NetworkInformation;
+﻿using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using NPSim.Entities.PhysicalLayer.Nic;
 
 namespace NPSim.Entities
@@ -8,5 +9,6 @@ namespace NPSim.Entities
         void InstallNic(INetworkInterfaceController nic);
         void UninstallNic(INetworkInterfaceController nic);
         void SendData(PhysicalAddress physicalAddress, byte[] data);
+        IEnumerable<INetworkInterface> GetAvailableNetworkInterfaces();
     }
 }
