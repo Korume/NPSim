@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,6 +13,7 @@ using NPSim.Views;
 
 namespace NPSim.ViewModels
 {
+    [DataContract]
     public class PhysicalMediaVm : INotifyPropertyChanged
     {
         private Point? _from;

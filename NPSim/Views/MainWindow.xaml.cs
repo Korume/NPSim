@@ -8,11 +8,15 @@ namespace NPSim.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(MainWindowVm mainWindowVm)
+        public MainWindow(MainWindowVm1 mainWindowVm)
         {
             InitializeComponent();
 
+            mainWindowVm.SimulationArea = SimulationArea;
             DataContext = mainWindowVm;
+
+            //OpenSystemUserControls.ItemsSource = mainWindowVm.OpenSystemVm.OpenSystemModels;
+            PhysicalMediaUserControls.ItemsSource = mainWindowVm.PhysicalMediaVm.PhysicalMediaModels;
         }
     }
 }

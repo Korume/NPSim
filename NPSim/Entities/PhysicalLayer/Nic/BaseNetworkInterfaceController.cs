@@ -1,19 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using NPSim.Entities.PhysicalLayer.Nic.EventHandlers;
 
 namespace NPSim.Entities.PhysicalLayer.Nic
 {
+    [DataContract]
+    [KnownType(typeof(NetworkInterface))]
     public class BaseNetworkInterfaceController : INetworkInterfaceController
     {
-        public uint NetworkInterfaceCount { get; }
-        public IReadOnlyList<INetworkInterface> NetworkInterfaces { get; }
+        [DataMember]
+        private readonly List<INetworkInterface> _networkInterfaces;
+
+        [DataMember]
+        public uint NetworkInterfaceCount { get; private set; }
         
-        public BaseNetworkInterfaceController(IReadOnlyList<INetworkInterface> networkInterfaces)
+        public IReadOnlyList<INetworkInterface> NetworkInterfaces { get => _networkInterfaces; }
+        
+        public BaseNetworkInterfaceController(List<INetworkInterface> networkInterfaces)
         {
-            NetworkInterfaces = networkInterfaces;
+            _networkInterfaces = networkInterfaces;
 
             foreach (var networkInterface in NetworkInterfaces)
             {

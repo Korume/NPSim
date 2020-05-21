@@ -1,4 +1,5 @@
-﻿using NPSim.Entities.PhysicalLayer.Nic;
+﻿using System.Runtime.Serialization;
+using NPSim.Entities.PhysicalLayer.Nic;
 
 namespace NPSim.Entities.PhysicalLayer.Media
 {

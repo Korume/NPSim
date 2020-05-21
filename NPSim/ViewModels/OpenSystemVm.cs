@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Runtime.Serialization;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -8,6 +9,7 @@ using NPSim.Views;
 
 namespace NPSim.ViewModels
 {
+    [DataContract]
     public class OpenSystemVm
     {
         public OpenSystemModel OpenSystemModel { get; private set; }

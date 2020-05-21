@@ -1,4 +1,5 @@
-﻿using NPSim.Entities.PhysicalLayer.Nic;
+﻿using System.Collections.Generic;
+using NPSim.Entities.PhysicalLayer.Nic;
 
 namespace NPSim.Domain.Builders
 {
@@ -9,7 +10,7 @@ namespace NPSim.Domain.Builders
             var macAddress1 = PhysicalAddressHelper.GeneratePhysicalAddress();
             var networkInterface1 = new NetworkInterface(macAddress1);
 
-            var nic = new BaseNetworkInterfaceController(new[] { networkInterface1 });
+            var nic = new BaseNetworkInterfaceController(new List<INetworkInterface> { networkInterface1 });
 
             return nic;
         }

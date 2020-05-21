@@ -1,16 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.Serialization;
 using NPSim.Entities.PhysicalLayer.Nic;
 
 namespace NPSim.Entities
 {
+    [DataContract]
+    [KnownType(typeof(Computer))]
+    [KnownType(typeof(BaseNetworkInterfaceController))]
     public abstract class BaseOpenSystem : IOpenSystem
     {
+        [DataMember]
         public bool IsActive { get; private set; }
+
+        [DataMember]
         public string Name { get; private set; }
-        public uint NicCount { get; }
-        public List<INetworkInterfaceController> NicCollection { get; }
+
+        [DataMember]
+        public uint NicCount { get; private set; }
+
+        [DataMember]
+        public List<INetworkInterfaceController> NicCollection { get; private set; }
 
         public BaseOpenSystem(string name, uint nicCount)
         {

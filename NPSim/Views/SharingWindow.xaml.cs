@@ -10,18 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NPSim.Models;
 
 namespace NPSim.Views
 {
     /// <summary>
-    /// Interaction logic for PhysicalMediaUserControl.xaml
+    /// Interaction logic for SharingWindow.xaml
     /// </summary>
-    public partial class PhysicalMediaUserControl : UserControl
+    public partial class SharingWindow : Window
     {
-        public PhysicalMediaUserControl()
+        public SharingWindow()
         {
             InitializeComponent();
         }

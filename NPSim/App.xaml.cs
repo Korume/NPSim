@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using NPSim.Composition;
+using NPSim.Domain;
 using NPSim.Views;
 using Unity;
 

@@ -1,15 +1,20 @@
 ﻿using System.Linq;
+using System.Runtime.Serialization;
 using NPSim.Entities.PhysicalLayer.Nic;
 
 namespace NPSim.Entities.PhysicalLayer.Media
 {
+    [DataContract]
     public class PhysicalMedia : IMedia
     {
         private const uint _connectorCount = 2;
 
         public bool HasAvailableConnector { get => _connectors.Any(c => !c.IsAttached); }
 
+        [DataMember]
         private readonly Cabel _cabel;
+
+        [DataMember]
         private readonly Connector[] _connectors;
 
         public PhysicalMedia(Cabel cabel, Connector[] connectors)

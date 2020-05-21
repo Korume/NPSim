@@ -31,6 +31,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -86,6 +87,8 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.ValueTuple">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
@@ -129,29 +132,47 @@
     <Compile Include="Domain\PhysicalLayer\MediaManager.cs" />
     <Compile Include="Domain\PhysicalLayer\OpenSystemManager.cs" />
     <Compile Include="Entities\BaseOpenSystem.cs" />
-    <Compile Include="Entities\PhysicalLayer\Nic\BaseNetworkInterfaceController.cs" />
-    <Compile Include="Entities\PhysicalLayer\Nic\EventHandlers\DataReceivedEventArgs.cs" />
-    <Compile Include="Entities\PhysicalLayer\Nic\IConnectionEndpoint.cs" />
+    <Compile Include="Entities\Computer.cs" />
+    <Compile Include="Entities\IOpenSystem.cs" />
     <Compile Include="Entities\PhysicalLayer\Media\Cabel.cs" />
     <Compile Include="Entities\PhysicalLayer\Media\Connector.cs" />
     <Compile Include="Entities\PhysicalLayer\Media\IMedia.cs" />
     <Compile Include="Entities\PhysicalLayer\Media\PhysicalMedia.cs" />
-    <Compile Include="Entities\IOpenSystem.cs" />
+    <Compile Include="Entities\PhysicalLayer\Nic\BaseNetworkInterfaceController.cs" />
+    <Compile Include="Entities\PhysicalLayer\Nic\EventHandlers\DataReceivedEventArgs.cs" />
+    <Compile Include="Entities\PhysicalLayer\Nic\IConnectionEndpoint.cs" />
     <Compile Include="Entities\PhysicalLayer\Nic\INetworkInterface.cs" />
     <Compile Include="Entities\PhysicalLayer\Nic\INetworkInterfaceController.cs" />
     <Compile Include="Entities\PhysicalLayer\Nic\NetworkInterface.cs" />
+    <Compile Include="Entities\Router.cs" />
+    <Compile Include="Entities\Switch.cs" />
     <Compile Include="Models\LogicalCursorState.cs" />
+    <Compile Include="Models\NetworkProjectModel.cs" />
+    <Compile Include="Models\NetworkProjectModel1.cs" />
     <Compile Include="Models\OpenSystemModel.cs" />
+    <Compile Include="Models\OpenSystemModel1.cs" />
     <Compile Include="Models\PhysicalMediaModel.cs" />
+    <Compile Include="Models\PhysicalMediaModel1.cs" />
+    <Compile Include="Sharing\Client\SharingServiceCallback.cs" />
+    <Compile Include="Sharing\Client\SharingServiceClient.cs" />
+    <Compile Include="Sharing\Lib\ISharingService.cs" />
+    <Compile Include="Sharing\Lib\ISharingServiceCallback.cs" />
+    <Compile Include="Sharing\Lib\SharingService.cs" />
     <Compile Include="ViewModels\MainWindowVm.cs" />
+    <Compile Include="ViewModels\MainWindowVm1.cs" />
     <Compile Include="ViewModels\OpenSystemVm.cs" />
+    <Compile Include="ViewModels\OpenSystemVm1.cs" />
     <Compile Include="ViewModels\PhysicalMediaVm.cs" />
+    <Compile Include="ViewModels\PhysicalMediaVm1.cs" />
     <Compile Include="ViewModels\TrafficWindowVm.cs" />
     <Compile Include="Views\OpenSystemUserControl.xaml.cs">
       <DependentUpon>OpenSystemUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PhysicalMediaUserControl.xaml.cs">
       <DependentUpon>PhysicalMediaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SharingWindow.xaml.cs">
+      <DependentUpon>SharingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TrafficWindow.xaml.cs">
       <DependentUpon>TrafficWindow.xaml</DependentUpon>
@@ -164,9 +185,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Entities\Computer.cs" />
-    <Compile Include="Entities\Router.cs" />
-    <Compile Include="Entities\Switch.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -176,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PhysicalMediaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SharingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -209,7 +231,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -231,6 +255,9 @@
     <Resource Include="Views\Images\computer.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

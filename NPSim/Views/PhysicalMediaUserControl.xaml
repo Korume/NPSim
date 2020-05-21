@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:NPSim.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Line Stroke="Black"
-          X1="{Binding From.X, UpdateSourceTrigger=PropertyChanged}"
-          X2="{Binding To.X, UpdateSourceTrigger=PropertyChanged}"
-          Y1="{Binding From.Y, UpdateSourceTrigger=PropertyChanged}"
-          Y2="{Binding To.Y, UpdateSourceTrigger=PropertyChanged}"/>
+    <Canvas>
+        <Line Name="PhysicalMediaCanvasElement" Stroke="Black"
+          X1="{Binding From.X}" Y1="{Binding From.Y}"
+          X2="{Binding To.X}" Y2="{Binding To.Y}"/>
+    </Canvas>
 </UserControl>

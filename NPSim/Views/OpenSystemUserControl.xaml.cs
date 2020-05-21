@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using NPSim.Models;
 
 namespace NPSim.Views
 {
-    /// <summary>
-    /// Interaction logic for OpenSystemUserControl.xaml
-    /// </summary>
     public partial class OpenSystemUserControl : UserControl
     {
         public OpenSystemUserControl()
         {
             InitializeComponent();
+        }
+
+        private void OpenSystemCanvasElement_Loaded(object sender, RoutedEventArgs e)
+        {
+            var openSystemModel = (OpenSystemModel1)DataContext;
+            var openSystemCanvasElement = (UIElement)sender;
+
+            openSystemCanvasElement.MouseLeftButtonDown += openSystemModel.OpenSystemUiElement_MouseDown;
+            openSystemCanvasElement.MouseLeftButtonUp += openSystemModel.OpenSystemUiElement_MouseUp;
+            openSystemCanvasElement.MouseMove += openSystemModel.OpenSystemUiElement_MouseMove;
+
+            Canvas.SetLeft(openSystemCanvasElement, openSystemModel.Position.X);
+            Canvas.SetTop(openSystemCanvasElement, openSystemModel.Position.Y);
         }
     }
 }
